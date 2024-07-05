@@ -1,38 +1,48 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* lodar css */
+/* From uiverse.io by @JulioCodesSM */
+.loader {
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    transform: translateX(-25px);
+    /* Compensating for the left of 50px in the keyframe. */
+   }
+   
+   .loader::before,
+   .loader::after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    animation: rotate9 1s infinite cubic-bezier(0.77, 0, 0.175, 1);
+   }
+   
+   .loader::before {
+    background-color: #fc3f9e;
+   }
+   
+   .loader::after {
+    background-color: #50e8f3;
+    animation-delay: .5s;
+   }
+   
+   @keyframes rotate9 {
+    0%,100% {
+     left: 50px;
+    }
+   
+    25% {
+     transform: scale(.3);
+    }
+   
+    50% {
+     left: 0;
+    }
+   
+    75% {
+     transform: scale(1);
+    }
+   }
