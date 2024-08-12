@@ -4,6 +4,7 @@ import News from './Component/News'
 import PropTypes from 'prop-types'
 import Aboutus from './Component/Aboutus'
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom'
+import LoadingBar from 'react-top-loading-bar'
 import './App.css'
 export default class App extends Component {
   // state={
@@ -39,7 +40,17 @@ export default class App extends Component {
 // science
 // sports
 // technology
-  render() {
+
+
+state = {
+  progress:0
+
+}
+
+setProgress = (progress) =>{
+  this.setState({progress:progress})
+}
+   render() {
     const  {isDarkMode} = this.state;
     const themeClass = isDarkMode ? "dark-mode":'light-mode';
     return (
@@ -48,14 +59,18 @@ export default class App extends Component {
          <div className={`app ${themeClass}`}>
 
         <Navbar toggleMode={this.toggleDarkMode} />
+        <LoadingBar
+        color='#f11946'
+        progress={this.state.progress}
+      />
         <Routes>
-         <Route  path='/' element={  <News key="general" pageSize={6} country={"in"} category={"general"} />}/>
-          <Route  path='/entertainment' element={  <News key="entertainment" pageSize={6} country={"in"} category={"entertainment"} />}/>
-          <Route  path='/business' element={  <News key="business" pageSize={6} country={"in"} category={"business"} />}/>
-          <Route  path='/health' element={  <News key="health" pageSize={6} country={"in"} category={"health"} />}/>
-          <Route  path='/science' element={  <News key="science" pageSize={6} country={"in"} category={"science"} />}/>
-          <Route  path='/sports' element={  <News key="sports" pageSize={6} country={"in"} category={"sports"} />}/>
-          <Route  path='/technology' element={  <News key="technology" pageSize={6} country={"in"} category={"technology"} />}/>
+         <Route  path='/' element={  <News setProgress = {this.setProgress} key="general" pageSize={6} country={"in"} category={"general"} />}/>
+          <Route  path='/entertainment' element={  <News setProgress = {this.setProgress} key="entertainment" pageSize={6} country={"in"} category={"entertainment"} />}/>
+          <Route  path='/business' element={  <News setProgress = {this.setProgress} key="business" pageSize={6} country={"in"} category={"business"} />}/>
+          <Route  path='/health' element={  <News setProgress = {this.setProgress} key="health" pageSize={6} country={"in"} category={"health"} />}/>
+          <Route  path='/science' element={  <News setProgress = {this.setProgress} key="science" pageSize={6} country={"in"} category={"science"} />}/>
+          <Route  path='/sports' element={  <News setProgress = {this.setProgress} key="sports" pageSize={6} country={"in"} category={"sports"} />}/>
+          <Route  path='/technology' element={  <News setProgress = {this.setProgress} key="technology" pageSize={6} country={"in"} category={"technology"} />}/>
           <Route  path='/Aboutus' element={  <Aboutus key="Aboutus" pageSize={6} country={"in"} category={"Aboutus"} />}/>
           
         </Routes>
@@ -65,7 +80,7 @@ export default class App extends Component {
 
         </Router>
 
-        {/* <NewsItem/> */}
+        {/* <News setProgress = {this.setProgress}Item/> */}
         {/* <Lodar /> */}
 
       </>
